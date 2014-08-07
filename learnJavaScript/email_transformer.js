@@ -1,10 +1,10 @@
 function transform(text) {
   var initialText = text;
-  if(text.length>12){
+  if(itHasMinimumLength(text)){
     for (var key in Rules()){
       text = text.replace(key,Rules()[key]);
     }
-    if(!itHaveDomain(text) || !itHaveAtbeforeDot(text) || !itHavesAtAndDot(text)){
+    if(!isValidEmail(text)){
       return initialText;
     }
   }
@@ -15,8 +15,10 @@ function Rules(){
   self = {
     "(AT)": "@",
     "-AT-": "@",
+    "AT": "@",
     "(DOT)": ".",
-    "-DOT-": "."
+    "-DOT-": ".",
+    "DOT": "."
   };
   return self;
 }
@@ -37,9 +39,21 @@ var itHaveAtbeforeDot = function(text){
   return false;
 }
 
-var itHavesAtAndDot = function(text){
+var itHasAtAndDot = function(text){
   if(text.indexOf("@") == -1 || text.indexOf(".") == -1) {
     return false;
   }
   return true;
 }
+
+var itHasMinimumLength = function(text) {
+  return text.length > "aATa.a".length
+}
+
+var isValidEmail= function(text){
+  if(!itHaveDomain(text) || !itHaveAtbeforeDot(text) || !itHasAtAndDot(text)){
+      return false;
+    }
+  return true;
+}
+

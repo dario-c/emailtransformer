@@ -40,6 +40,11 @@ describe("Email Transformator", function(){
       expect(transform("lalala(DOT)gmail")).toBe("lalala(DOT)gmail");
     });
 
+    it("Transforms (AT) and (DOT) to @ and .", function() {
+      expect(transform("la(DOT)lala(AT)gmail(DOT)com")).toBe("la.lala@gmail.com");
+    });
+
+
   });
 });
 
