@@ -36,6 +36,10 @@ describe("Email Transformator", function(){
       expect(transform("lalala(DOT)gmail(AT)com")).toBe("lalala(DOT)gmail(AT)com");
     });
 
+    it("It doesn't transform the text if they is only one DOT", function() {
+      expect(transform("lalala(DOT)gmail")).toBe("lalala(DOT)gmail");
+    });
+
   });
 });
 
