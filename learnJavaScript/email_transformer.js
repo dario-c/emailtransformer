@@ -4,7 +4,7 @@ function transform(text) {
     for (var key in Rules()){
       text = text.replace(key,Rules()[key]);
     }
-    if(!isValidEmail(text)){
+    if(!isValidEmail(text) || !itHaveAtbeforeDot(text)){
       return initialText;
     }
   }
@@ -28,4 +28,15 @@ var isValidEmail = function(text) {
     }
   }
   return true;
-} 
+}
+
+var itHaveAtbeforeDot = function(text){
+  if (text.indexOf('@') < text.indexOf('.')){
+    return true;
+  }
+  return false;
+}
+
+var isCamuflatedEmail = function(text){
+  result = isValidEmail(text);
+}

@@ -32,6 +32,9 @@ describe("Email Transformator", function(){
       expect(transform("   hhs   lalala-AT--DOT-com")).toBe("   hhs   lalala-AT--DOT-com");
     }); 
 
+    it("Doesn't transforms (AT) and (DOT) to when . is before @", function() {
+      expect(transform("lalala(DOT)gmail(AT)com")).toBe("lalala(DOT)gmail(AT)com");
+    });
 
   });
 });
