@@ -20,12 +20,19 @@ describe("Email Transformator", function(){
       expect(transform("lalala(AT)gmail(DOT)com")).toBe("lalala@gmail.com");
     });
 
-   it("if you only pass (AT) it Returns (AT) as a string", function() {
+    it("if you only pass (AT) it Returns (AT) as a string", function() {
       expect(transform("(AT)")).toBe("(AT)");
     });
-   it ("Transforms -AT- and -DOT- to @ and .", function() {
-      expect(transform("lalala-AT-gmail-DOT-com")).toBe("lalala@gmail.com");
-   });
+
+    it ("Transforms -AT- and -DOT- to @ and .", function() {
+      expect(transform("   hhs   lalala-AT-gmail-DOT-com")).toBe("   hhs   lalala@gmail.com");
+    });
+
+    it ("if combination of -AT- and -DOT- is not an email, not tranform the text", function() {
+      expect(transform("   hhs   lalala-AT--DOT-com")).toBe("   hhs   lalala-AT--DOT-com");
+    }); 
+
+
   });
 });
 
