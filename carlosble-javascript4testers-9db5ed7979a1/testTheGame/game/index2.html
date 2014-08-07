@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test The Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="page-header">
+         <h1>Test The Game</h1>
+    </div>
+    <div class="row">
+           <div class="col-md-6">
+              <div class="panel panel-default">
+                 <div class="panel-heading">
+                     Who is the fastest clicker?
+                 </div>
+                 <div class="panel-body">
+                 <label for="player-name">Player name:</label>
+                 <input type="text" name="player-name" id="player-name"/>
+                 <div class="btn-group">
+                     <button type="button" id="start-button" class="btn btn-default">Start the game</button>
+                     <button type="button" id="stop-button" class="btn btn-default">Finish</button>
+                </div>
+                  <br/> <div></div>
+                  <button id="the-button" class="btn btn-primary btn-lg btn-block" style="display:none;">
+                           Click here as fast as you can!</button>
+                </div>
+           </div>
+           <div class="col-md-4">
+              <div id="score-panel" class="panel panel-default" style="display:none;">
+                 <div class="panel-heading">
+                       Score
+                 </div>
+                 <div class="panel-body">
+                     <label id="clicks-count">0</label>
+                 </div>
+              </div>
+               
+           </div>
+    </div>
+
+    <script src="jquery-1.10.2.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script language="javascript">
+        $(document).ready(function(){
+            var clickCountLabel = $('#clicks-count');
+            var clicksCount = 0;
+            var gameButton = $('#the-button');
+            var stopButton = $('#stop-button');
+            var startButton = $('#start-button');
+            var playerNameBox = $('#player-name');
+            var scorePanel = $('#score-panel');
+            var playerName = null;
+
+            gameButton.click(onGameButtonClicked);
+            stopButton.click(onStopButtonClicked);
+            startButton.click(onStartButtonClicked);
+
+            function onGameButtonClicked(){
+                clicksCount++;
+                $.post('/sendScore/', {
+                    playerName:playerName,
+                    score: clicksCount
+                });
+                $.get('/getScores', function(data){
+                    var scores = JSON.parse(data);
+                    var scoreText = "";
+                    for (var playerName in scores){
+                       scoreText += playerName + ": ";
+                       scoreText += scores[playerName];
+                       scoreText += "<br/>";
+                    }
+                    clickCountLabel.html(scoreText);
+                });
+            }
+
+            function onStopButtonClicked(){
+                $.get('/stopGame');
+                clicksCount = 0;
+                gameButton.hide();
+                scorePanel.hide();
+                clickCountLabel.text(clicksCount);
+            };
+
+            function onStartButtonClicked(){
+                $.get('/startGame');
+                playerName = playerNameBox.val();
+                if(!playerName){
+                   alert('Please introduce your name first');
+                   return;
+                }
+                gameButton.show();
+                scorePanel.show();
+            };
+
+
+        });
+
+    </script>
+  </body>
+</html>

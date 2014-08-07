@@ -1,0 +1,27 @@
+
+The JavaScript koans introducing Jasmine and Karma - 1 hour
+   - how to debug with karma?
+
+Developer tools to play with jQuery and development tools - 20 mins.
+
+Exploratory testing on TestTheGame - 10 mins.
+Introduction to debugging - 20 mins.
+Can you understand the frontend code? - 10 mins.
+Can you figure out the defects? - 10 mins.
+
+Adding integration tests with Seleminum IDE - 20 mins
+
+Adding integration tests with CasperJS - 45 mins
+   - Create a bot to play the game.
+   - Create a bot to send chat messages in liveTeamApp
+
+Jasmine-jquery for GUI testing - 10 mins
+
+Test doubles - 30 minutes.
+
+Memory leaks, performance, security 30 mins.
+
+
+Bonuses: cleaning up the testTheGame code to make it unit testable.
+
+

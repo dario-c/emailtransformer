@@ -1,0 +1,15 @@
+To install and run the server:
+
+# npm install -g express
+$ npm install
+
+Then run the server:
+
+$ node server.js
+
+To run CasperJS tests:
+
+$ casperjs/bin/casperjs test tests/casperTests.js
+
+To run DOM integration tests, load this url in the browser:
+http://localhost:3000/tests/runner.html
