@@ -23,7 +23,9 @@ describe("Email Transformator", function(){
    it("if you only pass (AT) it Returns (AT) as a string", function() {
       expect(transform("(AT)")).toBe("(AT)");
     });
-
+   it ("Transforms -AT- and -DOT- to @ and .", function() {
+      expect(transform("lalala-AT-gmail-DOT-com")).toBe("lalala@gmail.com");
+   });
   });
 });
 
