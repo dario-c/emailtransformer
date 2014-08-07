@@ -1,6 +1,0 @@
-syntax: glob
-coverage/*
-debuggingmemory/*
-node_modules/*
-testTheGame/casperjs/*
-testTheGame/game/bootstrap/*

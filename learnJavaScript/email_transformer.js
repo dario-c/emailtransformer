@@ -1,5 +1,7 @@
 function transform(text) {
-  text = text.replace("(AT)","@");
-  text = text.replace('(DOT)',".");
+  if(text.length>12){
+    text = text.replace("(AT)","@");
+    text = text.replace('(DOT)',".");
+  }
   return text;
 }
