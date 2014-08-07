@@ -20,7 +20,9 @@ describe("Email Transformator", function(){
       expect(transform("lalala(AT)gmail(DOT)com")).toBe("lalala@gmail.com");
     });
 
-   
+   it("if you only pass (AT) it Returns (AT) as a string", function() {
+      expect(transform("(AT)")).toBe("(AT)");
+    });
 
   });
 });
