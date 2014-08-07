@@ -1,9 +1,18 @@
 function transform(text) {
   if(text.length>12){
-    text = text.replace("(AT)","@");
-    text = text.replace('(DOT)',".");
-    text = text.replace('-AT-','@');
-    text = text.replace('-DOT-',".");
+    for (var key in Rules()){
+      text = text.replace(key,Rules()[key]);
+    }
   }
   return text;
+}
+
+function Rules(){
+  self = {
+    "(AT)": "@",
+    "-AT-": "@",
+    "(DOT)": ".",
+    "-DOT-": "."
+  };
+  return self;
 }
