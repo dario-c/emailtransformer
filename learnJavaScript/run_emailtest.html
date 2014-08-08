@@ -19,6 +19,7 @@
   <!-- include spec files here... -->
   <script type="text/javascript" src="email_transformer.js" ></script>
   <script type="text/javascript" src="email_transformer_spec.js" data-cover></script>
+  <script type="text/javascript" src="button_logic.js" data-cover></script>
 
   <script type="text/javascript">
     (function() {
@@ -52,6 +53,9 @@
 </head>
 
 <body>
+<textarea id="input-text" cols="30" rows="10"></textarea>
+<button id="clean-button">Clean</button>
+<textarea disabled id="cleaned-text" cols="30" rows="10"></textarea>
 
 <div id="testing-container"> 
    <button id="testing-button">Testing</button>

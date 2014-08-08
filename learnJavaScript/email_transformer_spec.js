@@ -1,5 +1,3 @@
-
-
 describe("Email Transformator", function(){
 
   describe("Returns text filtered", function(){
@@ -44,15 +42,32 @@ describe("Email Transformator", function(){
       expect(transform("la(DOT)lala(AT)gmail(DOT)com")).toBe("la.lala@gmail.com");
     });
 
-    it("Transforms (AT) and (DOT) to @ and .", function() {
+    xit("Transforms (AT) and (DOT) to @ and .", function() {
       expect(transform("la(DOT)lala(AT)gmail(DOT)(DOT)com")).toBe("la(DOT)lala(AT)gmail(DOT)(DOT)com");
     });
     
+    it("Cleans the input text", function() {
+      the_user_introduces_the_text("lalala(AT)gmail(DOT)com");
+      the_user_asks_the_app_to_clean_up();
+      the_output_box_should_display("lalala@gmail.com");
+    });
+
 
   });
 });
-
-
+function the_user_introduces_the_text(text) {
+  var inputBox = $("#input-text");
+  inputBox.html(text);
+}
+function the_user_asks_the_app_to_clean_up(){
+  var button = $("#clean-button");
+  button.click();
+}
+function the_output_box_should_display(text){
+  var resultBox = $("#cleaned-text");
+  var output_text = resultBox.val();
+  expect(output_text).toBe(text);
+}
 /*
 
 name@"gmail".com
