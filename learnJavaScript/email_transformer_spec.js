@@ -20,7 +20,7 @@ describe("Email Transformator", function(){
       expect(transform("lalala(AT)gmail(DOT)com")).toBe("lalala@gmail.com");
     });
 
-    it("if you only pass (AT) it Returns (AT) as a string", function() {
+    it("Doesn't transform single symbols", function() {
       expect(transform("(AT)")).toBe("(AT)");
     });
 
@@ -28,7 +28,7 @@ describe("Email Transformator", function(){
       expect(transform("   hhs   lalala-AT-gmail-DOT-com")).toBe("   hhs   lalala@gmail.com");
     });
 
-    it ("if combination of -AT- and -DOT- is not an email, not tranform the text", function() {
+    it ("Doesn't transform if the letters don't make an email", function() {
       expect(transform("   hhs   lalala-AT--DOT-com")).toBe("   hhs   lalala-AT--DOT-com");
     }); 
 
@@ -36,7 +36,7 @@ describe("Email Transformator", function(){
       expect(transform("lalala(DOT)gmail(AT)com")).toBe("lalala(DOT)gmail(AT)com");
     });
 
-    it("It doesn't transform the text if they is only one DOT", function() {
+    it("Doesn't transform the text if there is only one DOT", function() {
       expect(transform("lalala(DOT)gmail")).toBe("lalala(DOT)gmail");
     });
 
@@ -44,6 +44,10 @@ describe("Email Transformator", function(){
       expect(transform("la(DOT)lala(AT)gmail(DOT)com")).toBe("la.lala@gmail.com");
     });
 
+    xit("Transforms (AT) and (DOT) to @ and .", function() {
+      expect(transform("la(DOT)lala(AT)gmail(DOT)(DOT)com")).toBe("la(DOT)lala(AT)gmail(DOT)(DOT)com");
+    });
+    
 
   });
 });

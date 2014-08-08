@@ -2,7 +2,9 @@ function transform(text) {
   var initialText = text;
   if(itHasMinimumLength(text)){
     for (var key in Rules()){
-      text = text.replace(key,Rules()[key]);
+      while(text.indexOf(key)!= -1){
+        text = text.replace(key, Rules()[key]);
+      }
     }
     if(!isValidEmail(text)){
       return initialText;
@@ -23,37 +25,46 @@ function Rules(){
   return self;
 }
 
-var itHaveDomain = function(text) {
+var itHasDomain = function(text) {
   for(var i=0; i<text.length-2;i++) {
     if( text[i]+text[i+1]== "@." ){
       return false;
     }
   }
   return true;
-}
+};
 
-var itHaveAtbeforeDot = function(text){
-  if (text.indexOf('@') < text.indexOf('.')){
+var itHasDotAfterAt = function(text){
+  var subText = text.substring(text.indexOf('@'),text.length)
+  if (subText.indexOf('@') < subText.indexOf('.')){
     return true;
   }
   return false;
-}
+};
 
 var itHasAtAndDot = function(text){
   if(text.indexOf("@") == -1 || text.indexOf(".") == -1) {
     return false;
   }
   return true;
-}
+};
 
 var itHasMinimumLength = function(text) {
-  return text.length > "aATa.a".length
+  return text.length > "a(AT)a(DOT)a".length
+};
+
+var itHasOnlyOneDotAfterAt = function(text) {
+  
 }
 
 var isValidEmail= function(text){
-  if(!itHaveDomain(text) || !itHaveAtbeforeDot(text) || !itHasAtAndDot(text)){
+  if(!itHasDomain(text) || !itHasDotAfterAt(text) || !itHasAtAndDot(text)){
       return false;
-    }
+  }
   return true;
-}
+};
 
+
+function replaceAll(find, replace, str) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
