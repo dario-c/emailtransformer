@@ -44,7 +44,7 @@ describe("Email Transformator", function(){
       expect(transform("la(DOT)lala(AT)gmail(DOT)com")).toBe("la.lala@gmail.com");
     });
 
-    xit("Transforms (AT) and (DOT) to @ and .", function() {
+    it("Transforms (AT) and (DOT) to @ and .", function() {
       expect(transform("la(DOT)lala(AT)gmail(DOT)(DOT)com")).toBe("la(DOT)lala(AT)gmail(DOT)(DOT)com");
     });
     
